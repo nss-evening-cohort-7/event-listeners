@@ -54,3 +54,31 @@ const students = [
         catchPhrase: "Multi-channelled solution-oriented artificial intelligence"
     }
 ];
+
+const printToDom = (domString, divId) => {
+    const printTo = document.getElementById(divId);
+    printTo.innerHTML = domString;
+};
+
+const buildDomString = (studentArray) => {
+    let domString = '';
+    studentArray.forEach((student) => {
+        domString += `<div class="card">`;
+       domString +=     `<h1>${student.firstName} ${student.lastName}</h1>`;
+       domString +=     `<h3>${student.catchPhrase}</h3>`;
+       domString +=     `<img src="${student.avatar}" alt="">`;
+       domString +=     `<button class="card-button">Brought Pie</button>`;
+       domString +=  `</div>`;
+    });
+    printToDom(domString, 'card-holder');
+}
+
+buildDomString(students);
+
+const allTheButtons = document.getElementsByClassName('card-button');
+
+for (let i = 0; i < allTheButtons.length; i++) {
+    allTheButtons[i].addEventListener('click', (e) => {
+        console.log('event!!!!!!!', e);
+    });
+}
